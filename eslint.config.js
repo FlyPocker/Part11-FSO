@@ -38,6 +38,16 @@ module.exports = [
     }
   },
   {
+    files: ['playwright.config.js'],
+    languageOptions: {
+      ecmaVersion: 2018,
+      sourceType: 'module',
+      globals: {
+        ...globals.node
+      }
+    }
+  },
+  {
     files: ['src/**/*.{js,jsx}', 'test/**/*.{js,jsx}'],
     plugins: {
       react,
