@@ -20,7 +20,9 @@ module.exports = [
       ecmaVersion: 2018,
       sourceType: 'commonjs',
       globals: {
-        ...globals.node
+        ...globals.browser,
+        ...globals.node,
+        ...globals.jest
       }
     },
     rules: {
