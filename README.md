@@ -2,6 +2,8 @@
 
 This repository is used for the CI/CD module of the Full Stack Open course
 
+## Website: https://project1.fly.dev/
+
 ## Commands
 
 Start by running `npm install` inside the project folder
