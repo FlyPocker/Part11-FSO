@@ -1,20 +1,24 @@
-name: Hello World!
+name: Periodic Hello
 
 on:
-  push:
-    branches:
-      - xmain
+  workflow_dispatch:
+  schedule:
+    - cron: '*/15 * * * *'
 
 jobs:
-  hello_world_job:
+  health_check:
     runs-on: ubuntu-latest
     steps:
-      - name: Say hello
+      - name: Ping endpoint
         run: |
-          echo "Hello World!"
-      - name: Run date
-        run: |
-          date
-      - name: Run ls -l
-        run: |
-          ls -l
+          # Flaga -f/--fail sprawia, że kody HTTP 4xx/5xx przerywają krok z błędem
+          curl --fail https://twoja-aplikacja.fly.dev/health2
+
+      - name: Notify Discord on Failure
+        if: ${{ failure() }}
+        uses: sarisia/actions-status-discord@v1
+        with:
+          webhook: ${{ secrets.DISCORD_WEBHOOK }}
+          title: 'Periodic Health Check Failed!'
+          description: 'The health check endpoint returned an error or is unreachable.'
+          color: '#FF0000'
