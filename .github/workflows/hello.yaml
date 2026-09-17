@@ -10,10 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Ping endpoint
-        run: |
-          # Flaga -f/--fail sprawia, że kody HTTP 4xx/5xx przerywają krok z błędem
-          curl --fail https://twoja-aplikacja.fly.dev/health2
-
+        run: curl --fail https://project1.fly.dev/health2
       - name: Notify Discord on Failure
         if: ${{ failure() }}
         uses: sarisia/actions-status-discord@v1
