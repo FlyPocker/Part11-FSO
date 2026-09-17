@@ -2,8 +2,6 @@ name: Periodic Hello
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: '*/15 * * * *'
 
 jobs:
   health_check:
